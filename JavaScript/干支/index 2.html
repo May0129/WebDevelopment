@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+
+        <script>
+            const JIKKAN = [
+                '庚',
+                '辛',
+                '壬',
+                '癸',
+                '甲',
+                '乙',
+                '丙',
+                '丁',
+                '戊',
+                '己',
+            ];
+            const JYUNISHI = [
+                '申',
+                '酉',
+                '戌',
+                '亥',
+                '子',
+                '丑',
+                '寅',
+                '卯',
+                '辰',
+                '巳',
+                '午',
+                '未',
+            ];
+
+            function calc() {
+                const yearInput = document.getElementById('year').value;
+                document.getElementById('y').textContent = yearInput;
+                document.getElementById('e').textContent =
+                    JIKKAN[yearInput % 10] + JYUNISHI[yearInput % 12];
+            }
+        </script>
+    </head>
+    <body>
+        <h2>
+            <span id="y"></span>
+            年の干支は
+            <span id="e"></span>
+        </h2>
+        <p>
+            <input id="year" value="2023" />
+            <button onclick="calc()">計算</button>
+        </p>
+    </body>
+</html>

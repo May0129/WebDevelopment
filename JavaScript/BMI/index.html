@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <script>
+            function calculateBMI() {
+                // 身長
+                const height = document.getElementById('i0').value;
+                // 体重
+                const weight = document.getElementById('i1').value;
+
+                const bmi = weight / (height * height);
+                console.log(bmi);
+
+                let resultText;
+                if (bmi < 18.5) {
+                    resultText = '低体重(痩せ型)';
+                } else if (bmi >= 18.5 && bmi < 25) {
+                    resultText = '普通体重';
+                } else if (bmi >= 25 && bmi < 30) {
+                    resultText = '肥満(1度)';
+                } else if (bmi >= 30 && bmi < 35) {
+                    resultText = '肥満(2度)';
+                } else if (bmi >= 35 && bmi < 40) {
+                    resultText = '肥満(3度)';
+                } else if (bmi >= 40) {
+                    resultText = '肥満(4度)';
+                }
+                document.getElementById('result').textContent = resultText;
+            }
+        </script>
+    </head>
+    <body>
+        <h2>BMI計算機</h2>
+        身長(m):<input id="i0" value="1.7" /> 体重(kg):<input
+            id="i1"
+            value="65"
+        />
+        <button onclick="calculateBMI()">check</button>
+        <p id="result"></p>
+    </body>
+</html>

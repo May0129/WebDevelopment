@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+
+        <script>
+            function kaibun() {
+                const sourcevalue = document.getElementById('source').value;
+                let sum = '';
+
+                for (let i = sourcevalue.length - 1; i >= 0; i--) {
+                    console.log(`今は${i}回目のループです。sum=${sum}`);
+                    sum = sum + sourcevalue.charAt(i);
+                }
+
+                document.getElementById('result').textContent = sum;
+            }
+        </script>
+    </head>
+    <body>
+        <input id="source" />
+        <button onclick="kaibun()">回文</button>
+        <p id="result"></p>
+    </body>
+</html>
