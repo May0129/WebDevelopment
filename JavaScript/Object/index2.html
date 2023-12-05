@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <script>
+            let car = {
+                color: 'red',
+                speed: 0,
+                fuel: 100,
+
+                accelerate: function () {
+                    this.speed += 10;
+                    this.fuel -= 5;
+                },
+
+                decelerate: function () {
+                    this.speed -= 10;
+                    this.fuel -= 1;
+                },
+
+                drive: function (distanceImKm) {
+                    // Reach 600 km
+                    const speedLimit = 600;
+                    for (let i = 0; i < speedLimit / 10; i++) {
+                        this.accelerate();
+                    }
+
+                    console.log(`Current speed ${this.speed} km.`);
+
+                    // Wait 10 min, 15 sec: 2.5km
+                    // 30 sec, 5 km
+                    // 15 sec, 2.5 km
+                    // 6 sec, 1 km
+
+                    const secondsRequired = (speedLimit / 100) * distanceImKm;
+                    console.log(
+                        `Car will run for ${secondsRequired} seconds...`
+                    );
+
+                    setTimeout(
+                        function (car) {
+                            // Stop the car
+                            for (let i = 0; i < speedLimit / 10; i++) {
+                                car.decelerate();
+                            }
+                            console.log('Car has stopped!');
+                        },
+                        secondsRequired * 1000,
+                        this
+                    );
+                },
+            };
+
+            function checkSpeed() {
+                document.getElementById('speed').textContent = car.speed;
+            }
+            function checkFuel() {
+                document.getElementById('fuel').textContent = car.fuel;
+            }
+
+            function displayCarProps() {
+                document.getElementById('speed').textContent =
+                    car.speed + ' km/h';
+                document.getElementById('fuel').textContent = car.fuel + ' L';
+            }
+
+            function driveCar() {
+                const distance = document.getElementById('distance').value;
+                car.drive(distance);
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="checkSpeed();checkFuel()">チェック</button>
+        <button onclick="driveCar()">Drive</button>
+
+        <p>走行距離<input id="distance" type="number" value="0" /></p>
+        <p>スピード<span id="speed"></span></p>
+        <p>ガゾリン量<span id="fuel"></span></p>
+    </body>
+</html>

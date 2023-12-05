@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <style>
+            #board {
+                background-color: black;
+            }
+            td.cell {
+                background-color: white;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                font-size: x-large;
+            }
+        </style>
+        <script>
+
+            function init() {
+               
+                const tableElement = document.getElementById('board');
+                for (let i = 0; i < 3; i++) {
+                    const rowElement = document.createElement('tr');
+
+                    for (let j = 0; j < 3; j++) {
+                        const detailElement = document.createElement('td');
+                        detailElement.onclick = clicked;
+                        detailElement.className = 'cell';
+                       
+                        rowElement.appendChild(detailElement);
+                    }
+                    tableElement.appendChild(rowElement);
+                }
+            }
+            function clicked(event) {
+                const cellContent = event.target.textContent;
+                let displayed = '';
+                switch (cellContent) {
+                    case '':
+                    displayed = '○';
+                        break;
+                    case '○':
+                        displayed = '×';                 
+                        break;
+                    case '×':
+                        displayed = '';
+                        break;
+                }
+                event.target.textContent = displayed;
+            }   
+        </script>
+    </head>
+    <body onload="init()">
+        <table id="board"></table>
+    </body>
+</html>
